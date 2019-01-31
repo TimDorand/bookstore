@@ -9,6 +9,7 @@ pipelines:
         script:
           # - ci/dependencies.sh
           # - docker-compose run -T client /usr/local/src/test.sh
+          - cidependencies.sh
           - docker-compose build
           - docker-compose up
           - docker-compose down
