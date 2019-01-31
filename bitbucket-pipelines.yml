@@ -7,6 +7,7 @@ pipelines:
   default:
     - step:
         script:
+          - apt-get update && apt-get install -y curl
           - docker build . -t node
           - export DOCKER_COMPOSE_VERSION=1.18.0
           - export DOCKER_COMPOSE_URL=https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)
