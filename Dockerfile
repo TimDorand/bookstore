@@ -21,5 +21,5 @@ COPY . .
 RUN chmod +x waitformongo.sh
 
 ## Launch the wait tool and then your application
-CMD ./waitformongo.sh && npm test  && npm start
+CMD ./waitformongo.sh && npm start
 # CMD [ "npm", "start" ]

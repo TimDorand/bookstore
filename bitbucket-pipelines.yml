@@ -15,4 +15,5 @@ pipelines:
           - chmod +x docker-compose
           - mv docker-compose /usr/local/bin
           - docker-compose build --force-rm --no-cache --pull
+    - step:
           - docker-compose up
