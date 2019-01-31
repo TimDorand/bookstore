@@ -1,4 +1,4 @@
-image: docker:stable
+image: debian:stable
 
 options:
   docker: true
