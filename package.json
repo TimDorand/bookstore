@@ -18,7 +18,11 @@
     "mocha": "^2.4.5"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "export NODE_ENV=dev && node server.js",
+=======
+    "start": "SET NODE_ENV=dev && node server.js",
+>>>>>>> ee40258edb02f721cff8ee9b9dd73b23004b42be
     "test": "mocha --timeout 10000"
   }
 }
