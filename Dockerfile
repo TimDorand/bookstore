@@ -1,4 +1,6 @@
 FROM node:8
+RUN apt-get update
+RUN apt-get install netcat-openbsd
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -14,4 +16,10 @@ RUN npm install
 
 # Bundle app source
 COPY . .
-CMD [ "npm", "start" ]
+
+## THE LIFE SAVER
+RUN chmod +x waitformongo.sh
+
+## Launch the wait tool and then your application
+CMD ./waitformongo.sh && npm start
+# CMD [ "npm", "start" ]
