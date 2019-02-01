@@ -6,7 +6,8 @@ options:
 pipelines:
   default:
     - step:
-        dependencies:
+        name: dependencies
+        script:
           - apt-get update && apt-get install -y curl
           - docker build . -t node
           - export DOCKER_COMPOSE_VERSION=1.18.0
@@ -14,7 +15,37 @@ pipelines:
           - curl -L $DOCKER_COMPOSE_URL > docker-compose
           - chmod +x docker-compose
           - mv docker-compose /usr/local/bin
-        build:
+  build:
+    - step:
+        name: build
+        script:
           - docker-compose build --force-rm --no-cache --pull
-        run:
+  run:
+    - step:
+        name: compose up
+        script:
           - docker-compose up -d
+
+
+
+pipelines:
+  default:
+    - step:
+        name: Build and test
+        script:
+          - npm install
+          - npm test
+  tags:                         # add the 'tags' section
+    release-*:                  # specify the tag
+      - step:                   # define the build pipeline for the tag
+          name: Build and release
+          script:
+            - npm install
+            - npm test
+            - npm run release
+  branches:
+    staging:
+      - step:
+          name: Clone
+          script:
+            - echo "Clone all the things!"
