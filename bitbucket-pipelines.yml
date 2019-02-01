@@ -22,4 +22,5 @@ pipelines:
     # - step:
         # name: compose up
         # script:
+          - docker-compose -f docker-compose.test.yml up --build -d
           - docker-compose up -d
