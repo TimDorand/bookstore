@@ -6,7 +6,7 @@ options:
 pipelines:
   default:
     - step:
-        script:
+        dependencies:
           - apt-get update && apt-get install -y curl
           - docker build . -t node
           - export DOCKER_COMPOSE_VERSION=1.18.0
@@ -14,6 +14,7 @@ pipelines:
           - curl -L $DOCKER_COMPOSE_URL > docker-compose
           - chmod +x docker-compose
           - mv docker-compose /usr/local/bin
+        build:
           - docker-compose build --force-rm --no-cache --pull
-    - step:
+        run:
           - docker-compose up -d
