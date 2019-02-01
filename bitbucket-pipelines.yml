@@ -15,11 +15,11 @@ pipelines:
           - curl -L $DOCKER_COMPOSE_URL > docker-compose
           - chmod +x docker-compose
           - mv docker-compose /usr/local/bin
-    - step:
-        name: build
-        script:
+    # - step:
+        # name: build
+        # script:
           - docker-compose build --force-rm --no-cache --pull
-    - step:
-        name: compose up
-        script:
+    # - step:
+        # name: compose up
+        # script:
           - docker-compose up -d
